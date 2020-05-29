@@ -10,7 +10,7 @@ def home(request):
 
 def user_login(request):
     if request.method == 'POST':
-        form = loginForm(request.POST):
+        form = loginForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
             user = authenticate(request,
@@ -33,4 +33,4 @@ def user_login(request):
     else:
         form = loginForm()
     
-    return render(request , account/login.html , {'form':form})
+    return render(request , 'account/login.html' , {'form':form})
