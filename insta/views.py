@@ -1,13 +1,44 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpRequest,HttpResponse
-from .forms import loginForm
+from .forms import loginForm,UserRegistratinForm
 from django.contrib.auth import authenticate,login
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
-def home(request):
-    return render(request, 'home.html')
+def register(request):
+    if request.method == 'POST':
+        user_form = UserRegistratinForm(request.POST)
+        
+        if user_form.is_valid():
+            # create a new user object but avoid saving it yet
+            new_user = user_form.save(commit= False)
+            # set the chose password
+            new_user.set_password(user_form.cleaned_data['password'])
+            # save the new user
+            new_user.save()
+
+            return redirect('login')
+
+
+
+    else:
+        user_form = UserRegistratinForm()
+        return render(request,'account/register.html' , {'user_form':user_form})
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
 
 def user_login(request):
     if request.method == 'POST':
@@ -38,4 +69,5 @@ def user_login(request):
 
 
 def dashboard(request):
+
     return render(request,'account/dashboard.html', {'section':'dashboard'})
