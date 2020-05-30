@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpRequest,HttpResponse
 from .forms import loginForm
 from django.contrib.auth import authenticate,login
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -34,3 +35,7 @@ def user_login(request):
         form = loginForm()
     
     return render(request , 'account/login.html' , {'form':form})
+
+
+def dashboard(request):
+    return render(request,'account/dashboard.html', {'section':'dashboard'})
