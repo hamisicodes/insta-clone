@@ -37,6 +37,9 @@ body{
 
 }
 
+/* messages */
+
+
 @media(max-width: 576px) {
     .search-bar{
         display: none;

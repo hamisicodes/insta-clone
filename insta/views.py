@@ -4,6 +4,7 @@ from .forms import loginForm,UserRegistratinForm,UserEditForm,ProfileEditForm
 from django.contrib.auth import authenticate,login
 from django.contrib.auth.decorators import login_required
 from .models import Profile
+from  django.contrib import messages
 # Create your views here.
 
 def register(request):
@@ -18,55 +19,16 @@ def register(request):
             # save the new user
             new_user.save()
             Profile.objects.create(user= new_user)
-
+            messages.success(request ,'Account created successfully')
             return redirect('login')
 
 
 
     else:
         user_form = UserRegistratinForm()
+
         return render(request,'account/register.html' , {'user_form':user_form})
 
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-def user_login(request):
-    if request.method == 'POST':
-        form = loginForm(request.POST)
-        if form.is_valid():
-            cd = form.cleaned_data
-            user = authenticate(request,
-                                username =  cd['username'],
-                                password =  cd['password']
-                                 )    
-            if user is not None:
-                if user.is_active:
-                    login(request ,user)
-                    return HttpResponse('Authenticated Successfully')
-
-                else:
-                    return HttpResponse('Account disabled')
-
-            
-            else:
-                return HttpResponse('Invalid Login')
-
-
-    else:
-        form = loginForm()
-    
-    return render(request , 'account/login.html' , {'form':form})
 
 
 @login_required
@@ -82,6 +44,10 @@ def edit(request):
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
+            messages.success(request ,'Profie updated successfully')
+        
+        else:
+            messages.error(request,'Error updating profile')
 
     else:
         user_form = UserEditForm(instance=request.user)

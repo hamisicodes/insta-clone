@@ -19,7 +19,7 @@
 <body>
     
     <nav class="navbar navbar-expand navbar-light  ">
-        <a class="navbar-brand logo" href="#">Insta-Clone</a>
+        <a class="navbar-brand logo" href="{% url 'dashboard' %}">Insta-Clone</a>
         {% if request.user.is_authenticated %}
         <input class="form-control search-bar " type="search" placeholder="Search" aria-label="Search"> 
                     <ul class="navbar-nav mr-auto nav-right-items ">
@@ -35,7 +35,8 @@
                               <a class="dropdown-item" href="#">Profile</a>
                               <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
                               <div class="dropdown-divider"></div>
-                              <a class="dropdown-item" href="#">Something else here</a>
+                              <a class="dropdown-item" href="{% url 'edit' %}">Edit profile</a>
+                              <a class="dropdown-item" href="#">Change Password</a>
                             </div>
                           </li>
                       </li>
@@ -46,9 +47,36 @@
                     </ul> 
     </nav>
 
-    {% block content%}
+        {% if messages %}
+        <div class="container">
+            <ul class="messages">
+                {% for message in messages %}
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS%}
+                <div class="alert alert-success" role="alert">
+                    <a href="#" class="close" data-dismiss="alert">&times</a>
+                    {{message}}
+                </div>
+                {% endif %}
+                
+                {%if message.level == DEFAULT_MESSAGE_LEVELS.ERROR%}
+                  <div class="alert alert-danger" role="alert">
+                    <a href="#" class="close" data-dismiss="alert">&times</a>
+                      {{message}}
+                  </div>
+                {% endif %}
+    
+                {% endfor %}
+            </ul>
+        </div>
 
+        {% endif %}
+    
+
+    
+    {% block content%}
+    
     {% endblock %}
+
 
 
 
