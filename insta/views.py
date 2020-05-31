@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http import HttpRequest,HttpResponse
-from .forms import loginForm,UserRegistratinForm,UserEditForm,ProfileEditForm
+from .forms import loginForm,UserRegistratinForm,UserEditForm,ProfileEditForm,ImageForm
 from django.contrib.auth import authenticate,login
 from django.contrib.auth.decorators import login_required
 from .models import Profile,Image
@@ -57,3 +57,21 @@ def edit(request):
         profile_form=ProfileEditForm(instance=request.user.profile)
 
     return render(request, 'account/edit.html', {'user_form':user_form , 'profile_form':profile_form})
+
+
+def create(request):
+    if request.method == 'POST:
+        image_form = ImageForm(request.POST,request.FILES)
+        profile = Profile.objects.get(id = request.user.id)
+
+        if image_form.is_valid():
+            post = image_form.save(commit = False)
+            post.profile = profile
+            post.save()
+
+            messages.success(request ,'New Post added successfully')
+            return redirect('dashboard')
+
+    else:
+        image_form= ImageForm()
+        return render(request,'account/post.html', {'image_form':image_form})
