@@ -1,0 +1,74 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    background-color:  #FAFAFA;
+}
+
+.card{
+    border: 1px solid #DBDBDB;
+    border-bottom: 0;
+    margin: 0;
+    margin-top: 3%;
+}
+.paid-text{
+    font-size: 70%;
+ }
+ .card-image{
+    margin: 0;
+    margin-top: 3%;
+}
+
+.card-content{
+    margin: 0;
+    margin-left: 6%;
+    margin-top: 2%;
+    
+}
+
+.insta-button{
+    color: #262626;
+    font-size: 150%;
+    margin: 0;
+    margin-left: 2%;
+    margin-top: 1%;
+    font-weight: 200;
+}
+
+.card-text {
+    margin-left: 2%;
+    font-family: 'Roboto', sans-serif;
+}
+.card-text-caption{
+    margin-left: 2%;
+}
+
+.comment-bar{
+     
+    width: 100%;
+    
+    
+}
+.post-button{
+    background-color: #FFFFFF;
+    border: 1px solid #DBDBDB;
+    border-left: none;
+    color: #3995F6;
+   
+}
+.comment:focus{
+    outline: 0;
+    box-shadow: none;
+    border: 1px solid #DBDBDB;
+    border-right: 0;
+}
+.post-button:focus{
+    outline: 0;
+    box-shadow: none;
+ }
+
+ .post-button:hover{
+    color: #3995F6;
+ }

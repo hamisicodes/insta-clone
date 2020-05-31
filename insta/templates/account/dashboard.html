@@ -1,14 +1,96 @@
 {% extends 'base.html' %}
-
+{% load static%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    {% block styles %}
+    {{block.super}}
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    {% endblock %}
 </head>
 <body>
     {% block content%}
+    
+    <div class="feed d-flex justify-content-center row">
+
+        <div class="col-">
+              
+                <div class="card" style="width: 32rem;">
+         
+                        <h10 class=" card-content">
+                        <img src="{% static 'photos/Logo.png'%}" height="30" class="round" alt="">  
+                        <strong> salim</strong>  </h10>
+                        <p class="paid-text card-content" > paid partnership with moringa <br> Nairobi, Kenya</p>
+                        
+                        <img src="{% static 'photos/nature5.jpeg'%}" height="500" class="card-img-top card-image" alt="...">
+                
+                    <p> 
+                        <a href="#" class=""> <i class="far fa-heart insta-button"></i>       </a>
+                        <a href="#" class=""> <i class="far fa-comment insta-button"></i>     </a>
+                        <a href="#" class=""> <i class="far fa-paper-plane insta-button"></i>  </a>
+                    </p>
+                        
+                    <p class="card-text">745 likes</p>
+                    <p class="card-text-caption"> <strong>hamso</strong> keep going   </p>
+                    
+                    </div>
+                    <div class="comment-section comment-bar">
+                        <form action=".">
+                            <div class="input-group">
+                                <input type="text" class="form-control comment"placeholder="Add a Comment ..." >
+                                <div class="input-group-append">
+                                    <button class="btn post-button " type="submit"> Post </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+
+        </div>
+    </div>
+
+    <div class="feed d-flex justify-content-center row">
+
+        <div class="col-">
+              
+                <div class="card" style="width: 32rem;">
+         
+                        <h10 class=" card-content">
+                        <img src="{% static 'photos/Logo.png'%}" height="30" class="round" alt="">  
+                        <strong> salim</strong>  </h10>
+                        <p class="paid-text card-content" > paid partnership with moringa <br> Nairobi, Kenya</p>
+                        
+                        <img src="{% static 'photos/nature5.jpeg'%}" height="500" class="card-img-top card-image" alt="...">
+                
+                    <p> 
+                        <a href="#" class=""> <i class="far fa-heart insta-button"></i>       </a>
+                        <a href="#" class=""> <i class="far fa-comment insta-button"></i>     </a>
+                        <a href="#" class=""> <i class="far fa-paper-plane insta-button"></i>  </a>
+                    </p>
+                        
+                    <p class="card-text">745 likes</p>
+                    <p class="card-text-caption"> <strong>hamso</strong> keep going   </p>
+                    
+                    </div>
+                    <div class="comment-section comment-bar">
+                        <form action=".">
+                            <div class="input-group">
+                                <input type="text" class="form-control comment"placeholder="Add a Comment ..." >
+                                <div class="input-group-append">
+                                    <button class="btn post-button " type="submit"> Post </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+
+        </div>
+    </div>
+
+    
         
     {% endblock %}
 </body>
