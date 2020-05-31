@@ -9,3 +9,11 @@ class  Profile(models.Model):
     photo = models.ImageField(upload_to='users/' , blank=True)
     bio = models.TextField(default="Hello everyone amusing insta-clone")
 
+
+class Image(models.Model):
+    name = models.CharField(max_length=50)
+    Image = models.ImageField(upload_to='posts', blank=True)
+    caption = models.TextField()
+    profile = models.ForeignKey(Profile , on_delete=models.CASCADE)
+    likes = models.PositiveIntegerField(default=0)
+
