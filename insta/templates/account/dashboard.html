@@ -13,6 +13,8 @@
 </head>
 <body>
     {% block content%}
+
+    {% for post in posts%}
     
     <div class="feed d-flex justify-content-center row">
 
@@ -21,11 +23,11 @@
                 <div class="card" style="width: 32rem;">
          
                         <h10 class=" card-content">
-                        <img src="{% static 'photos/Logo.png'%}" height="30" class="round" alt="">  
-                        <strong> salim</strong>  </h10>
+                        <img src="{{post.profile.photo}}" height="30" class="round" alt="">  
+                        <strong> {{post.profile.user}}</strong>  </h10>
                         <p class="paid-text card-content" > paid partnership with moringa <br> Nairobi, Kenya</p>
                         
-                        <img src="{% static 'photos/nature5.jpeg'%}" height="500" class="card-img-top card-image" alt="...">
+                        <img src="{{post.image.url}}" height="500" class="card-img-top card-image" alt="...">
                 
                     <p> 
                         <a href="#" class=""> <i class="far fa-heart insta-button"></i>       </a>
@@ -53,43 +55,8 @@
     </div>
     <br><br><br>
 
-    <div class="feed d-flex justify-content-center row">
+    {% endfor %}
 
-        <div class="col-">
-              
-                <div class="card" style="width: 32rem;">
-         
-                        <h10 class=" card-content">
-                        <img src="{% static 'photos/Logo.png'%}" height="30" class="round" alt="">  
-                        <strong> salim</strong>  </h10>
-                        <p class="paid-text card-content" > paid partnership with moringa <br> Nairobi, Kenya</p>
-                        
-                        <img src="{% static 'photos/nature5.jpeg'%}" height="500" class="card-img-top card-image" alt="...">
-                
-                    <p> 
-                        <a href="#" class=""> <i class="far fa-heart insta-button"></i>       </a>
-                        <a href="#" class=""> <i class="far fa-comment insta-button"></i>     </a>
-                        <a href="#" class=""> <i class="far fa-paper-plane insta-button"></i>  </a>
-                    </p>
-                        
-                    <p class="card-text">745 likes</p>
-                    <p class="card-text-caption"> <strong>hamso</strong> keep going   </p>
-                    
-                    </div>
-                    <div class="comment-section comment-bar">
-                        <form action=".">
-                            <div class="input-group">
-                                <input type="text" class="form-control comment"placeholder="Add a Comment ..." >
-                                <div class="input-group-append">
-                                    <button class="btn post-button " type="submit"> Post </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-
-
-        </div>
-    </div>
 
     
         

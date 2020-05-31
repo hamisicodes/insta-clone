@@ -3,7 +3,7 @@ from django.http import HttpRequest,HttpResponse
 from .forms import loginForm,UserRegistratinForm,UserEditForm,ProfileEditForm
 from django.contrib.auth import authenticate,login
 from django.contrib.auth.decorators import login_required
-from .models import Profile
+from .models import Profile,Image
 from  django.contrib import messages
 # Create your views here.
 
@@ -33,7 +33,10 @@ def register(request):
 
 @login_required
 def dashboard(request):
-    return render(request,'account/dashboard.html', {'section':'dashboard'})
+    posts = Image.objects.all()
+
+
+    return render(request,'account/dashboard.html', {'posts':posts})
 
 @login_required
 def edit(request):
