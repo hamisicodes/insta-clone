@@ -12,7 +12,7 @@ class  Profile(models.Model):
 
 class Image(models.Model):
     name = models.CharField(max_length=50)
-    Image = models.ImageField(upload_to='posts', blank=True)
+    image = models.ImageField(upload_to='posts', blank=True)
     caption = models.TextField()
     profile = models.ForeignKey(Profile , on_delete=models.CASCADE)
     likes = models.PositiveIntegerField(default=0)
