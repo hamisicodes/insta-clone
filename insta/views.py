@@ -34,8 +34,6 @@ def register(request):
 @login_required
 def dashboard(request):
     posts = Image.objects.all()
-
-
     return render(request,'account/dashboard.html', {'posts':posts})
 
 @login_required
@@ -58,11 +56,11 @@ def edit(request):
 
     return render(request, 'account/edit.html', {'user_form':user_form , 'profile_form':profile_form})
 
-
+@login_required
 def create(request):
-    if request.method == 'POST:
+    if request.method == 'POST':
         image_form = ImageForm(request.POST,request.FILES)
-        profile = Profile.objects.get(id = request.user.id)
+        profile = Profile.objects.get(user__id = request.user.id)
 
         if image_form.is_valid():
             post = image_form.save(commit = False)
