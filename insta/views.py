@@ -73,3 +73,7 @@ def create(request):
     else:
         image_form= ImageForm()
         return render(request,'account/post.html', {'image_form':image_form})
+
+def profile(request):
+
+    return render(request ,'account/profile.html')

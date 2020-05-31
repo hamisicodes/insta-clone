@@ -12,6 +12,7 @@
 <body>
 
     {% block content %}
+    <br><br>
     <section class="login-form">
         <div class="container">
             <div class="row justify-content-center">
@@ -23,7 +24,7 @@
                         {{ image_form.as_p }}
                         {% csrf_token %}
                        
-                        <p><input type="submit" value="Save changes"></p>
+                        <p><input type="submit" value="POST"></p>
                     </form>
     
                 </div>

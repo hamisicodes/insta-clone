@@ -32,10 +32,9 @@
                                 {{request.user.username}} <i class="fas fa-user nav-icons"></i>
                              </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                              <a class="dropdown-item" href="#">Profile</a>
+                              <a class="dropdown-item" href="{%url 'profile' %}">Profile</a>
                               <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
                               <div class="dropdown-divider"></div>
-                              <a class="dropdown-item" href="{% url 'edit' %}">Edit profile</a>
                               <a class="dropdown-item" href="#">Change Password</a>
                             </div>
                           </li>
