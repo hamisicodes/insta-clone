@@ -12,7 +12,8 @@ urlpatterns = [
     path('logout/' , auth_views.LogoutView.as_view(),{"next_page": '/'} ,name ='logout' ),
     path('edit/', views.edit , name='edit'),
     path('create/', views.create , name='create'),
-    path('profile/', views.profile, name= 'profile')
+    path('profile/', views.profile, name= 'profile'),
+    path('profile/<username>', views.get_profile, name= 'get_profile')
 ]
 
 if settings.DEBUG:

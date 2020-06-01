@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate,login
 from django.contrib.auth.decorators import login_required
 from .models import Profile,Image
 from  django.contrib import messages
+from django.contrib.auth.models import User
 # Create your views here.
 
 def register(request):
@@ -75,5 +76,18 @@ def create(request):
         return render(request,'account/post.html', {'image_form':image_form})
 
 def profile(request):
+    profile = Profile.objects.get(user__id = request.user.id)
+    images = Image.objects.filter(profile = profile)
+    return render(request ,'account/profile.html' , {'profile':profile , 'images':images})
 
-    return render(request ,'account/profile.html')
+
+def get_profile(request,username):
+  
+    profile = Profile.objects.get(user__username = username) 
+    images = Image.objects.filter(profile = profile)
+
+    if profile.user == request.user:
+        return redirect('profile')
+
+    return render(request ,'account/profile.html' , {'profile':profile , 'images':images})
+    
