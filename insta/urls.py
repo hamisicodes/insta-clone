@@ -13,7 +13,8 @@ urlpatterns = [
     path('edit/', views.edit , name='edit'),
     path('create/', views.create , name='create'),
     path('profile/', views.profile, name= 'profile'),
-    path('profile/<username>', views.get_profile, name= 'get_profile')
+    path('profile/<username>', views.get_profile, name= 'get_profile'),
+    path('comment/<int:pk>', views.comment, name= 'comment')
 ]
 
 if settings.DEBUG:

@@ -3,7 +3,7 @@ from django.http import HttpRequest,HttpResponse
 from .forms import loginForm,UserRegistratinForm,UserEditForm,ProfileEditForm,ImageForm
 from django.contrib.auth import authenticate,login
 from django.contrib.auth.decorators import login_required
-from .models import Profile,Image
+from .models import Profile,Image,Comment
 from  django.contrib import messages
 from django.contrib.auth.models import User
 # Create your views here.
@@ -92,8 +92,21 @@ def get_profile(request,username):
     return render(request ,'account/profile.html' , {'profile':profile , 'images':images})
 
 
-# def comment(request):
-#     if request.method == 'POST':
-#         if request.POST['comment']:
+def comment(request , pk):
+    post = Image.objects.get(pk = pk)
+    if request.method == 'POST':
+        if request.POST['comment']:
+            comment = Comment(comment = request.POST['comment'])
+            comment.commentor = request.user
+            comment.post = post
+
+            return redirect('dashboard')
+    else:
+        posts = Image.objects.all()
+        return render(request,'account/dashboard.html', {'posts':posts})
+
+
+    
+
 
     
