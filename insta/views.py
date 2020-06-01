@@ -111,11 +111,11 @@ def comment(request,pk):
         new_comment.post = post
         new_comment.save()
 
-        return redirect('dashboard')
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
     else:
 
-        return redirect('dashboard')
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 def follow(request,user_to):
 
