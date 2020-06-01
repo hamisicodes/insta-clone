@@ -1,6 +1,11 @@
 from django.db import models
 import datetime as dt
 from django.conf import settings
+from django.contrib.auth.models import User
+
+# add a field dynamicaly
+
+                            
 
 # Create your models here.
 class  Profile(models.Model):
@@ -28,3 +33,18 @@ class Comment(models.Model):
     commentor = models.ForeignKey(settings.AUTH_USER_MODEL , on_delete=models.CASCADE)
     comment = models.TextField()
     post = models.ForeignKey(Image, on_delete=models.CASCADE)
+
+
+class Follow(models.Model):
+    user_from = models.ForeignKey(settings.AUTH_USER_MODEL , related_name = 'rel_from' , on_delete=models.CASCADE)
+    user_to = models.ForeignKey(settings.AUTH_USER_MODEL , related_name ='rel_to' ,on_delete=models.CASCADE)
+
+User.add_to_class('following',
+                  models.ManyToManyField('self',
+                                        through=Follow,
+                                        related_name='followers',
+                                        symmetrical=False
+                                        ))
+                  
+                 
+

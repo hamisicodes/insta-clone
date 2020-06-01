@@ -3,7 +3,7 @@ from django.http import HttpRequest,HttpResponse
 from .forms import loginForm,UserRegistratinForm,UserEditForm,ProfileEditForm,ImageForm
 from django.contrib.auth import authenticate,login
 from django.contrib.auth.decorators import login_required
-from .models import Profile,Image,Comment
+from .models import Profile,Image,Comment,Follow
 from  django.contrib import messages
 from django.contrib.auth.models import User
 # Create your views here.
@@ -105,8 +105,18 @@ def comment(request,pk):
         return redirect('dashboard')
 
     else:
-        
+
         return redirect('dashboard')
+
+def follow(requset,user_to):
+    user = user.objects.get(id=user_to)
+    is_follow = False
+
+    
+
+
+
+
 
 
 

@@ -29,8 +29,11 @@
                     {{ user_form.as_p }}
                     {% csrf_token %}
                    
-                    <p><input type="submit" value="log in"></p>
+                    <p><input type="submit" value="sign ip"></p>
                 </form>
+                <div class="signup">
+                    <p class="no-account"> Have  an account ? <a href="{%url 'login' %} " class="signup-link"> Signin </a> </p>
+                </div>
 
             </div>
         </div>
