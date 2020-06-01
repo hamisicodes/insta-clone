@@ -14,7 +14,8 @@ urlpatterns = [
     path('create/', views.create , name='create'),
     path('profile/', views.profile, name= 'profile'),
     path('profile/<username>', views.get_profile, name= 'get_profile'),
-     path('comment/<int:pk>', views.comment , name= 'comment')
+    path('comment/<int:pk>', views.comment , name= 'comment'),
+    path('follow/<int:user_to>', views.follow , name= 'follow')
    
 ]
 

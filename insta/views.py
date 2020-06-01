@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from django.http import HttpRequest,HttpResponse
+from django.http import HttpRequest,HttpResponse,HttpResponseRedirect
 from .forms import loginForm,UserRegistratinForm,UserEditForm,ProfileEditForm,ImageForm
 from django.contrib.auth import authenticate,login
 from django.contrib.auth.decorators import login_required
@@ -79,18 +79,27 @@ def create(request):
 def profile(request):
     profile = Profile.objects.get(user__id = request.user.id)
     images = Image.objects.filter(profile = profile)
-    return render(request ,'account/profile.html' , {'profile':profile , 'images':images})
+
+    followers = Follow.objects.filter(user_to = request.user).count()
+    following = Follow.objects.filter(user_from = request.user).count()
+    return render(request ,'account/profile.html' , {'profile':profile , 'images':images , "followers":followers,"following":following})
 
 
 def get_profile(request,username):
   
     profile = Profile.objects.get(user__username = username) 
     images = Image.objects.filter(profile = profile)
+    user = User.objects.get(username=username)
 
-    if profile.user == request.user:
-        return redirect('profile')
+    if Follow.objects.filter(user_from=request.user,user_to = user).exists():
+        is_follow =True
+    else:
+        is_follow =False
+    
+    followers = Follow.objects.filter(user_to = user).count()
+    following = Follow.objects.filter(user_from = user).count()
 
-    return render(request ,'account/profile.html' , {'profile':profile , 'images':images})
+    return render(request ,'account/profile.html' , {'profile':profile , 'images':images , "is_follow":is_follow,"followers":followers,"following":following})
 
 
 def comment(request,pk):
@@ -108,10 +117,19 @@ def comment(request,pk):
 
         return redirect('dashboard')
 
-def follow(requset,user_to):
-    user = user.objects.get(id=user_to)
-    is_follow = False
+def follow(request,user_to):
 
+    user = User.objects.get(id=user_to)
+    is_follow = False
+    rel = Follow.objects.filter(user_from = request.user , user_to = user)
+    if rel.exists():
+        rel.delete()
+        is_follow = False
+    else:
+        Follow(user_from = request.user, user_to = user).save()
+        is_follow =True
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     
 
 

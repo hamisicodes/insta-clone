@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Profile,Image,Comment
+from .models import Profile,Image,Comment,Follow
 
 # Register your models here.
 
@@ -14,4 +14,8 @@ class ImageAdmin(admin.ModelAdmin):
 @admin.register(Comment)
 class ImageAdmin(admin.ModelAdmin):
     list_display =('commentor','comment','post')
+
+@admin.register(Follow)
+class FollowAdmin(admin.ModelAdmin):
+    list_display =('user_from','user_to')
 

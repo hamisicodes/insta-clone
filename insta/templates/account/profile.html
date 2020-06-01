@@ -21,12 +21,19 @@
             {% if profile.user.id == request.user.id %}
             <p class="profile-edit"><a href="{% url 'edit' %}"><button type="button" class="btn btn-outline-primary btn-rounded waves-effect">Edit Profile</button></a></p>
             {% else %}
-            <p class="profile-edit"><a href="#"><button type="button" class="btn btn-outline-primary btn-rounded waves-effect">Follow</button></a></p>
+
+                {% if is_follow %}
+                <p class="profile-edit"><a href="{% url 'follow' profile.user.id %}"><button type="button" class="btn btn-outline-success waves-effect">Unfollow</button></a></p>
+                {% else %}
+                <p class="profile-edit"><a href="{% url 'follow' profile.user.id %}"><button type="button" class="btn btn-outline-primary btn-rounded waves-effect">Follow</button></a></p>
+                {% endif %}
+
+            
             {% endif %}
             <div class="profile-details">
                 <p class="p-details"><b>{{images|length}}</b> Posts</p>
-                <p class="p-details"> <b>0</b> Followers</p>
-                <p class="p-details"><b>0</b> Following</p>
+                <p class="p-details"> <b>{{followers}}</b> Followers</p>
+                <p class="p-details"><b>{{following}}</b> Following</p>
             </div>
         </div>
         <hr>

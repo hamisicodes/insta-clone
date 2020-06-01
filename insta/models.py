@@ -36,8 +36,8 @@ class Comment(models.Model):
 
 
 class Follow(models.Model):
-    user_from = models.ForeignKey(settings.AUTH_USER_MODEL , related_name = 'rel_from' , on_delete=models.CASCADE)
-    user_to = models.ForeignKey(settings.AUTH_USER_MODEL , related_name ='rel_to' ,on_delete=models.CASCADE)
+    user_from = models.ForeignKey(settings.AUTH_USER_MODEL , related_name = 'rel_from_set' , on_delete=models.CASCADE)
+    user_to = models.ForeignKey(settings.AUTH_USER_MODEL , related_name ='rel_to_set' ,on_delete=models.CASCADE)
 
 User.add_to_class('following',
                   models.ManyToManyField('self',
