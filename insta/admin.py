@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Profile,Image
+from .models import Profile,Image,Comment
 
 # Register your models here.
 
@@ -10,4 +10,8 @@ class ProfileAdmin(admin.ModelAdmin):
 @admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):
     list_display =('image','name','caption')
+
+@admin.register(Comment)
+class ImageAdmin(admin.ModelAdmin):
+    list_display =('commentor','comment','post')
 

@@ -25,7 +25,7 @@
                         <h10 class=" card-content">
                         <img src="#" height="30" class="round" alt="">  
                         <a href="profile/{{post.profile.user.username}}"><strong> {{post.profile.user.username}}</strong></a> </h10>
-                        <p class="paid-text card-content" > paid partnership with moringa <br> Nairobi, Kenya</p>
+                        <p class="paid-text card-content" > paid partnership with Moringa <br> Nairobi, Kenya</p>
                         
                         <img src="{{post.image.url}}" height="500" class="card-img-top card-image" alt="...">
                 
@@ -37,11 +37,23 @@
                         
                     <p class="card-text">745 likes</p>
                     <p class="card-text-caption"> <strong>{{post.profile.user}}</strong> {{post.caption}}  </p>
+                    <div class="comment-section" style="margin-left: 2%;">
+                        <small>comments......</small><br>
+                        {% if comments %}
+                        {% for comment in comments %}
+                        {%if comment.post.id == post.id %}
+                        <b style="display: block;">[{{comment.commentor}}]:</b><p class="comments" style="display: inline;">{{comment.comment}}</p><br><br>
+                        {% endif %}
+                        {% endfor %}
+                        {% endif %} 
+                    </div>
+
                     
                     </div>
                     <div class="comment-section comment-bar">
-                        <form method="post">
+                        <form method="post" action="comment/{{post.id}}">
                             {% csrf_token %}
+                            
                             <div class="input-group">
                                 <input type="text" class="form-control comment"placeholder="Add a Comment ..." name="comment" >
                                 <div class="input-group-append">

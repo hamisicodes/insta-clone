@@ -72,3 +72,7 @@ body{
  .post-button:hover{
     color: #3995F6;
  }
+
+ .comment-section {
+    font-family: 'Roboto', sans-serif;
+}

@@ -35,7 +35,8 @@ def register(request):
 @login_required
 def dashboard(request):
     posts = Image.objects.all()
-    return render(request,'account/dashboard.html', {'posts':posts})
+    comments = Comment.objects.all()
+    return render(request,'account/dashboard.html', {'posts':posts , 'comments':comments})
 
 @login_required
 def edit(request):
@@ -92,18 +93,21 @@ def get_profile(request,username):
     return render(request ,'account/profile.html' , {'profile':profile , 'images':images})
 
 
-def comment(request , pk):
-    post = Image.objects.get(pk = pk)
-    if request.method == 'POST':
-        if request.POST['comment']:
-            comment = Comment(comment = request.POST['comment'])
-            comment.commentor = request.user
-            comment.post = post
+def comment(request,pk):
+    post = Image.objects.get(pk =pk)
 
-            return redirect('dashboard')
+    if request.POST.get('comment'):
+        new_comment = Comment(comment =request.POST.get('comment'))
+        new_comment.commentor = request.user
+        new_comment.post = post
+        new_comment.save()
+
+        return redirect('dashboard')
+
     else:
-        posts = Image.objects.all()
-        return render(request,'account/dashboard.html', {'posts':posts})
+        
+        return redirect('dashboard')
+
 
 
     
