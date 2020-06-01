@@ -12,7 +12,7 @@ As a user of the application I should be able to:
 1. Like a picture and leave a comment on it.
 
 ### Prerequisites
-1 .python3 
+1. python3 
 1. You are recommended to install a virtual environment to run this web app
 1. The rest of dependencies that you would need are found in the requirments.txt
 
