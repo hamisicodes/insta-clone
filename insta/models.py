@@ -22,3 +22,9 @@ class Image(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Comment(models.Model):
+    commentor = models.ForeignKey(settings.AUTH_USER_MODEL , on_delete=models.CASCADE)
+    comment = models.TextField()
+    post = models.ForeignKey(Image, on_delete=models.CASCADE)

@@ -90,4 +90,10 @@ def get_profile(request,username):
         return redirect('profile')
 
     return render(request ,'account/profile.html' , {'profile':profile , 'images':images})
+
+
+# def comment(request):
+#     if request.method == 'POST':
+#         if request.POST['comment']:
+
     
