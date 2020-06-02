@@ -36,6 +36,8 @@ def register(request):
 def dashboard(request):
     posts = Image.objects.all()
     comments = Comment.objects.all()
+    
+
     return render(request,'account/dashboard.html', {'posts':posts , 'comments':comments})
 
 @login_required
@@ -132,8 +134,28 @@ def follow(request,user_to):
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     
 
+def like(request,post_id):
+    post = Image.objects.get(pk =post_id)
 
+    
+    if post.likes.filter(id = request.user.id).exists():
+        post.likes.remove(request.user)
+        
+    else:
+        post.likes.add(request.user)
+        
 
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+def searches(request):
+    if request.GET.get('search'):
+        search = request.GET['search']
+        profiles = Profile.objects.filter(user__username__icontains = search)
+        return render(request,'account/searches.html' , {'profiles':profiles})
+    else:
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+    
 
 
 

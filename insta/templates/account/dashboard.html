@@ -30,12 +30,16 @@
                         <img src="{{post.image.url}}" height="500" class="card-img-top card-image" alt="...">
                 
                     <p> 
-                        <a href="#" class=""> <i class="far fa-heart insta-button"></i>       </a>
+                        {% if post.likes.request.user %}
+                        <a href="{% url 'like' post.id %}" class=""> <i class="far fa-heart insta-button" style="color: red;"></i>  </a> 
+                        {% else %}
+                        <a href="{% url 'like' post.id %}" class=""> <i class="far fa-heart insta-button" ></i>  </a> 
+                        {% endif %}
                         <!-- <a href="#" class=""> <i class="far fa-comment insta-button"></i>     </a> -->
                         <a href="#" class=""> <i class="far fa-paper-plane insta-button"></i>  </a>
                     </p>
                         
-                    <p class="card-text">745 likes</p>
+                    <p class="card-text">{{post.likes.count}} likes</p>
                     <p class="card-text-caption"> <strong>{{post.profile.user}}</strong> {{post.caption}}  </p>
                     <div class="comment-section" style="margin-left: 2%;">
                         <small>comments......</small><br>

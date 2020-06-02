@@ -23,10 +23,14 @@ class Image(models.Model):
     image = models.ImageField(upload_to='posts', blank=True)
     caption = models.TextField(blank=True)
     profile = models.ForeignKey(Profile , on_delete=models.CASCADE)
-    likes = models.PositiveIntegerField(default=0)
+    likes = models.ManyToManyField(User,related_name='likes' , blank =True)
 
+    def all_likes(self):
+        return self.likes.count()
+        
     def __str__(self):
         return self.name
+
 
 
 class Comment(models.Model):

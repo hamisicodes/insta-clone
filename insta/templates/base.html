@@ -21,11 +21,10 @@
     <nav class="navbar navbar-expand navbar-light  ">
         <a class="navbar-brand logo" href="{% url 'dashboard' %}">Insta-Clone</a>
         {% if request.user.is_authenticated %}
-        <input class="form-control search-bar " type="search" placeholder="Search" aria-label="Search"> 
-                    <ul class="navbar-nav mr-auto nav-right-items ">
-                                
-
-                        
+        <form class="form-inline my-2 my-lg-0" action="{% url 'searches' %}" method="get">
+          <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search User" aria-label="Search">
+        </form>
+              <ul class="navbar-nav mr-auto nav-right-items ">
                         <li class="nav-item dropdown">
 
                             <a class="nav-link dropdown-toggle " href="#" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -51,7 +50,7 @@
                           {% endif %}
 
 
-                    </ul> 
+              </ul> 
     </nav>
 
         {% if messages %}
