@@ -21,8 +21,11 @@ def register(request):
             new_user.save()
             Profile.objects.create(user= new_user)
             messages.success(request ,'Account created successfully')
-            return redirect('login')
+            return redirect('dashboard')
 
+        else:
+            messages.error(request ,'Error creating your account')
+            return render(request,'account/register.html' , {'user_form':user_form})
 
 
     else:
@@ -151,7 +154,8 @@ def searches(request):
     if request.GET.get('search'):
         search = request.GET['search']
         profiles = Profile.objects.filter(user__username__icontains = search)
-        return render(request,'account/searches.html' , {'profiles':profiles})
+        searchterm = f'{search}'
+        return render(request,'account/searches.html' , {'profiles':profiles, 'searchterm':searchterm})
     else:
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 

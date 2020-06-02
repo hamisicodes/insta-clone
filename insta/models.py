@@ -2,6 +2,7 @@ from django.db import models
 import datetime as dt
 from django.conf import settings
 from django.contrib.auth.models import User
+from datetime import datetime as dt
 
 # add a field dynamicaly
 
@@ -11,8 +12,9 @@ from django.contrib.auth.models import User
 class  Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE) #To refer the user model
     date_of_birth = models.DateField(blank =True, null =True)
-    photo = models.ImageField(upload_to='users/' , blank=True)
+    photo = models.ImageField(upload_to='users/' , blank=True , default='../static/photos/profile.jpeg')
     bio = models.TextField(default="Hello everyone amusing insta-clone")
+    
 
     def __str__(self):
         return self.user.username
@@ -24,6 +26,12 @@ class Image(models.Model):
     caption = models.TextField(blank=True)
     profile = models.ForeignKey(Profile , on_delete=models.CASCADE)
     likes = models.ManyToManyField(User,related_name='likes' , blank =True)
+    created_at =models.DateTimeField(auto_now_add=True,blank=True,null =True)
+
+    class Meta:
+        ordering = ['-pk']
+
+    
 
     def all_likes(self):
         return self.likes.count()
