@@ -42,7 +42,7 @@ class Image(models.Model):
     image = models.ImageField(upload_to='posts', blank=True)
     caption = models.TextField(blank=True)
     profile = models.ForeignKey(Profile , on_delete=models.CASCADE)
-    likes = models.ManyToManyField(User,related_name='likes' , blank =True)
+    likes = models.ManyToManyField(User,related_name='likes' , blank =True) #likes
     created_at =models.DateTimeField(auto_now_add=True,blank=True,null =True)
     
 
@@ -91,8 +91,8 @@ class Comment(models.Model):
       
         
 class Follow(models.Model):
-    user_from = models.ForeignKey(settings.AUTH_USER_MODEL , related_name = 'rel_from_set' , on_delete=models.CASCADE)
-    user_to = models.ForeignKey(settings.AUTH_USER_MODEL , related_name ='rel_to_set' ,on_delete=models.CASCADE)
+    user_from = models.ForeignKey(User , related_name = 'rel_from_set' , on_delete=models.CASCADE)
+    user_to = models.ForeignKey(User , related_name ='rel_to_set' ,on_delete=models.CASCADE)
 
 User.add_to_class('following',
                   models.ManyToManyField('self',

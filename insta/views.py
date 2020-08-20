@@ -89,7 +89,7 @@ def profile(request):
     following = Follow.objects.filter(user_from = request.user).count()
     return render(request ,'account/profile.html' , {'profile':profile , 'images':images , "followers":followers,"following":following})
 
-
+# important
 def get_profile(request,username):
   
     profile = Profile.objects.get(user__username = username) 
@@ -121,7 +121,7 @@ def comment(request,pk):
     else:
 
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-
+# important
 def follow(request,user_to):
 
     user = User.objects.get(id=user_to)

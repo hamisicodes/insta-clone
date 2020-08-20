@@ -1,6 +1,7 @@
 *{
     padding: 0;
     margin: 0;
+    max-width: 100%;
 }
 
 body{
@@ -19,13 +20,15 @@ body{
  .card-image{
     margin: 0;
     margin-top: 3%;
+    padding: 30px;
+    max-width: 100%;
 }
 
 .card-content{
     margin: 0;
-    margin-left: 6%;
+    margin-left: 4%;
     margin-top: 2%;
-    
+    padding:12px;
 }
 
 .insta-button{
@@ -35,14 +38,21 @@ body{
     margin-left: 2%;
     margin-top: 1%;
     font-weight: 200;
+    padding-left: 25px;
 }
 
 .card-text {
     margin-left: 2%;
     font-family: 'Roboto', sans-serif;
+    padding-left: 25px;
 }
-.card-text-caption{
+p.card-text-caption{
     margin-left: 2%;
+    padding-left: 25px;
+}
+
+p.paid-text.card-content{
+    padding-left: 15px;
 }
 
 .comment-bar{
@@ -75,4 +85,29 @@ body{
 
  .comment-section {
     font-family: 'Roboto', sans-serif;
+    padding-left: 25px;
+}
+
+
+@media(max-width:700px){
+    .insta-button {
+        color: #262626;
+        font-size: 150%;
+        margin: 0;
+        margin-left: 2%;
+        margin-top: 1%;
+        font-weight: 200;
+        
+    }
+
+    .card-text {
+        padding-left: 25px;
+    }
+
+ 
+ 
+      
+
+
+
 }

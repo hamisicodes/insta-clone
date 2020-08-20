@@ -8,7 +8,7 @@
     <title>Document</title>
     {% block styles %}
     {{block.super}}
-    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dashboardd.css' %}">
     {% endblock %}
 </head>
 <body>
@@ -20,7 +20,7 @@
 
         <div class="col-">
               
-                <div class="card" style="width: 32rem;">
+                <div class="card" >
          
                         <h10 class=" card-content">
                         <img src="#" height="30" class="round" alt="">  
@@ -38,8 +38,8 @@
                         <!-- <a href="#" class=""> <i class="far fa-comment insta-button"></i>     </a> -->
                         <a href="#" class=""> <i class="far fa-paper-plane insta-button"></i>  </a>
                     </p>
-                        
-                    <p class="card-text">{{post.likes.count}} likes</p>
+                    
+                    <p class="card-text">{{post.likes.count}} likes</p>  
                     <p class="card-text-caption"> <strong>{{post.profile.user}}</strong> {{post.caption}}  </p>
                     <div class="comment-section" style="margin-left: 2%;">
                         <small>comments......</small><br>
