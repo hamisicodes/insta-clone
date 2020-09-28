@@ -6,6 +6,8 @@ from django.contrib.auth.decorators import login_required
 from .models import Profile,Image,Comment,Follow
 from  django.contrib import messages
 from django.contrib.auth.models import User
+from django.http import JsonResponse
+import json
 # Create your views here.
 
 def register(request):
@@ -137,18 +139,28 @@ def follow(request,user_to):
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     
 
-def like(request,post_id):
-    post = Image.objects.get(pk =post_id)
-
+def like(request):
     
+    data = json.loads(request.body)
+    post_id = data['postId']
+    action = data['action']
+
+    post = Image.objects.get(id =post_id)
+    data = {}
+
     if post.likes.filter(id = request.user.id).exists():
         post.likes.remove(request.user)
+        data = {'is_liked':False}
+          
         
     else:
         post.likes.add(request.user)
-        
+        data = {'is_liked':True}
 
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    print(post_id)
+    print(action)
+    
+    return JsonResponse(data)
 
 def searches(request):
     if request.GET.get('search'):
